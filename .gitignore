@@ -1,2 +1,5 @@
 /**/.idea
 /**/.DS_Store
+/**/*.csv
+/**/*.xlsx
+/**/__pycache__/
