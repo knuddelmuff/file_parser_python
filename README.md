@@ -1,1 +1,2 @@
-# file_parser_python
+# Table file converter
+by Ellen & Alex
