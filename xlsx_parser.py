@@ -42,11 +42,24 @@ class Parser:
             column_content = [row[column] for row in reader]
             print(column_content[:10], "\n")
 
-            for i,e in enumerate(column_content):
+            for i, e in enumerate(column_content):
                 try:
                     float(e)
                 except:
                     print("[Warning] Column contains words/strings or empty!")
                     print("Column: {}".format(i))
 
+    def change_string2number(self, filename, column, string, number):
+        input_file = csv.DictReader(open(filename, "r", encoding="utf-8"))
+        headers = input_file.fieldnames
+        output_file = csv.DictWriter(open(filename, "w"), fieldnames=headers)
+
+        output_file.writeheader()
+
+        for row in input_file:
+            if row[column] == string:
+                row[column] = number
+            output_file.writerow(row)
+
+        print("[Info] Converted {} to {}".format(string,number))
 
