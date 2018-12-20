@@ -11,7 +11,7 @@ class Menu:
   #   #  #       #     #  #   #     #       #    # #   #  #    # #      #   #  
  #     # #######  #####  #     #    #       #    # #    #  ####  ###### #    # 
 
- by Alexander Teusz (www.teusz.me)
+ by Alexander Teusz and Ellen Oldenburg
 
         GENERAL INFO:
         You can type in your command using the command line. The numbers in the menu below are used to start a command.
@@ -27,8 +27,8 @@ class Menu:
         print("""
         ### MENU ###
         (1)\t\t convert to CSV & opens directory
-
         (2)\t\t delete null cells
+        (3)\t\t check if column only has numbers
         (help)\tshows help information
         (exit)\twill end the parser 
         """)
