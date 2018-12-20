@@ -7,6 +7,8 @@ if __name__ == '__main__':
     new_menu.general_info()
     new_menu.launch_menu()
 
+    new_parser = Parser()
+
     go = True
     while go:
         user_input = input("-> ")
@@ -15,7 +17,6 @@ if __name__ == '__main__':
             file_name = input("Filename (path/to/file.xlsx) -> ")
             sheet_name = input("Sheet in {} -> ".format(file_name))
             try:
-                new_parser = Parser()
                 new_parser.excel_to_csv(file_name, sheet_name)
             except:
                 print("[Error] There is no file called '{}' OR no sheet called '{}'".format(file_name, sheet_name))
@@ -26,10 +27,20 @@ if __name__ == '__main__':
         elif user_input == "3":
             filename = input("Filename (path/to/file.csv) -> ")
             column = input("Column (V0_Date) -> ")
-            new_parser = Parser()
-            new_parser.check_if_float(filename, column)
-            #except:
-              #  print("[Error] There is no CSV file named {} or a column named {}".format(file_name, column))
+            try:
+                new_parser.check_if_float(filename, column)
+            except:
+                print("[Error] There is no CSV file named {} or a column named {}".format(filename, column))
+
+        elif user_input == "4":
+            filename = input("Filename (path/to/file.csv) -> ")
+            column = input("Column (V0_Date) -> ")
+            string = input("String to change -> ")
+            number = int(input("Number to change string into -> "))
+            try:
+                new_parser.change_string2number(filename, column, string, number)
+            except:
+                print("[Error] There is no CSV file named {} or a column named {}".format(filename, column))
 
         elif user_input == "":
             new_menu.launch_menu()
