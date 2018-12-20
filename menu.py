@@ -29,6 +29,7 @@ class Menu:
         (1)\t\t convert to CSV & opens directory
         (2)\t\t delete null cells
         (3)\t\t check if column only has numbers
+        (4)\t\t change string in column with number ('Hi' -> 1)
         (help)\tshows help information
         (exit)\twill end the parser 
         """)
