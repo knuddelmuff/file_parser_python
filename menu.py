@@ -26,10 +26,13 @@ class Menu:
     def launch_menu(self):
         print("""
         ### MENU ###
+        
         (1)\t\t convert to CSV & opens directory
         (2)\t\t delete null cells
         (3)\t\t check if column only has numbers
         (4)\t\t change string in column with number ('Hi' -> 1)
+        (5)\t\t get the max value of a specific column
+        
         (help)\tshows help information
         (exit)\twill end the parser 
         """)

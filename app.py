@@ -42,6 +42,14 @@ if __name__ == '__main__':
             except:
                 print("[Error] There is no CSV file named {} or a column named {}".format(filename, column))
 
+        elif user_input == "5":
+            filename = input("Filename (path/to/file.csv) -> ")
+            column = input("Column (V0_Date) -> ")
+            try:
+                new_parser.get_maxOfColumn(filename, column)
+            except:
+                print("[Error] There is no CSV file named {} or a column named {}".format(filename, column))
+
         elif user_input == "":
             new_menu.launch_menu()
         elif user_input == "exit":

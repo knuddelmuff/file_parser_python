@@ -2,7 +2,7 @@ import xlrd
 import csv
 import datetime
 import os
-
+import pandas as pd
 
 class Parser:
 
@@ -62,4 +62,14 @@ class Parser:
             output_file.writerow(row)
 
         print("[Info] Converted {} to {}".format(string,number))
+
+
+    def get_maxOfColumn(self, filename, column):
+        df = pd.read_csv(filename)
+        max_row = df.loc[df[column].idxmax()]
+        max_value = int(df[column].max())
+
+        print("[Info] Row with maximum value: \n\n", max_row, "\n")
+        print("[Info] The max value of {} is {}".format(column, max_value))
+
 
