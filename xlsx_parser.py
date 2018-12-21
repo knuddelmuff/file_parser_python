@@ -4,6 +4,7 @@ import datetime
 import os
 import pandas as pd
 
+
 class Parser:
 
     def __init__(self):
@@ -34,7 +35,7 @@ class Parser:
         df = pd.read_csv(filename)
         df = df.dropna(subset=[column])
         df.to_csv(filename, index=False)
-
+        print("[Info] Deleted null rows from {}".format(column))
 
     def check_if_float(self, filename, column):
         with open(filename, "r", encoding="utf-8") as f:
@@ -62,8 +63,7 @@ class Parser:
                 row[column] = number
             output_file.writerow(row)
 
-        print("[Info] Converted {} to {}".format(string,number))
-
+        print("[Info] Converted {} to {}".format(string, number))
 
     def get_maxOfColumn(self, filename, column):
         df = pd.read_csv(filename)
@@ -73,4 +73,12 @@ class Parser:
         print("[Info] Row with maximum value: \n\n", max_row, "\n")
         print("[Info] The max value of {} is {}".format(column, max_value))
 
+    # TODO: Alter der Leute berechnen
+    def get_ageOfPerson(self, filename, bdayColumn):
+        pass
 
+    # TODO: Wert in einer Spalte zählen
+    def count_value(self, filename, column, value):
+        pass
+    # df.groupby('a').count()
+    # https://stackoverflow.com/questions/22391433/count-the-frequency-that-a-value-occurs-in-a-dataframe-column
