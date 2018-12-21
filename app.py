@@ -21,8 +21,13 @@ if __name__ == '__main__':
             except:
                 print("[Error] There is no file called '{}' OR no sheet called '{}'".format(file_name, sheet_name))
 
-        elif user_input == "help":
-            new_menu.show_help()
+        elif user_input == "2":
+            filename = input("Filename (path/to/file.csv) -> ")
+            column = input("Column (V0_Date) -> ")
+            #try:
+            new_parser.delete_null_rows(filename, column)
+            #except:
+                #print("[Error] There is no CSV file named {} or a column named {}".format(filename, column))
 
         elif user_input == "3":
             filename = input("Filename (path/to/file.csv) -> ")
@@ -50,6 +55,8 @@ if __name__ == '__main__':
             except:
                 print("[Error] There is no CSV file named {} or a column named {}".format(filename, column))
 
+        elif user_input == "help":
+            new_menu.show_help()
         elif user_input == "":
             new_menu.launch_menu()
         elif user_input == "exit":

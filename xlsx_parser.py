@@ -29,11 +29,12 @@ class Parser:
         print("[Done] {} was successfully converted to CSV".format(file_name))
         print("[Warning] It needs up to 10 seconds until the file is created!")
 
-    def delete_null(self):
+    def delete_null_rows(self, filename, column):
+        # https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.dropna.html
+        df = pd.read_csv(filename)
+        df = df.dropna(subset=[column])
+        df.to_csv(filename, index=False)
 
-        with open(self.csv_file, 'r') as input_file:
-            content = csv.reader(input_file)
-            print(content)
 
     def check_if_float(self, filename, column):
         with open(filename, "r", encoding="utf-8") as f:
