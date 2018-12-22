@@ -55,6 +55,23 @@ if __name__ == '__main__':
             except:
                 print("[Error] There is no CSV file named {} or a column named {}".format(filename, column))
 
+        elif user_input == "6":
+            filename = input("Filename (path/to/file.csv) -> ")
+            column = input("Bday Column (V0_Bdate) -> ")
+            try:
+                new_parser.get_ageOfPerson(filename, column)
+            except:
+                print("[Error] There is no CSV file named {} or a column named {}".format(filename, column))
+
+        elif user_input == "7":
+            filename = input("Filename (path/to/file.csv) -> ")
+            column = input("Column -> ")
+            value = input("Value to count -> ")
+            try:
+                new_parser.count_value(filename, column, value)
+            except:
+                print("[Error] There is no CSV file named {} or a column named {}".format(filename, column))
+
         elif user_input == "help":
             new_menu.show_help()
         elif user_input == "":

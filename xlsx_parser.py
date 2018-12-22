@@ -3,6 +3,8 @@ import csv
 import datetime
 import os
 import pandas as pd
+from datetime import datetime
+from helper import calculate_age
 
 
 class Parser:
@@ -73,12 +75,27 @@ class Parser:
         print("[Info] Row with maximum value: \n\n", max_row, "\n")
         print("[Info] The max value of {} is {}".format(column, max_value))
 
-    # TODO: Alter der Leute berechnen
+    # TODO: BUG! Gibt immer 1970 aus. Timestamps in CSV sind komisch
     def get_ageOfPerson(self, filename, bdayColumn):
-        pass
+        df = pd.read_csv(filename)
+        df = df[bdayColumn]
+        ages = [datetime.fromtimestamp(t).strftime('%Y-%m-%d') for t in df]
+        ages = [datetime.strptime(age, '%Y-%m-%d') for age in ages]
+        for age in ages:
+            print("GebDat: ", age.date(), "\t\t\tAlter: ", calculate_age(age))
 
-    # TODO: Wert in einer Spalte zählen
     def count_value(self, filename, column, value):
-        pass
-    # df.groupby('a').count()
-    # https://stackoverflow.com/questions/22391433/count-the-frequency-that-a-value-occurs-in-a-dataframe-column
+        df = pd.read_csv(filename)
+        df = df[column]
+        counter = 0
+        for v in df:
+            if str(v) == value:
+                counter += 1
+
+        if counter > 0:
+            print("\n[Info] Counted {} in column {}".format(value, column))
+            print("Value: ", value)
+            print("n:     ", counter)
+        else:
+            print("\n[Warning] There is no '{}' in {}".format(value, column))
+

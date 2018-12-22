@@ -32,6 +32,7 @@ class Menu:
         (3)\t\t check if column only has numbers
         (4)\t\t change string in column with number ('Hi' -> 1)
         (5)\t\t get the max value of a specific column
+        (6)\t\t get the ages of all persons
         
         (help)\tshows help information
         (exit)\twill end the parser 
