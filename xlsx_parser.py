@@ -3,8 +3,7 @@ import csv
 import datetime
 import os
 import pandas as pd
-from datetime import datetime
-from helper import calculate_age
+from datetime import datetime, date
 
 
 class Parser:
@@ -75,14 +74,36 @@ class Parser:
         print("[Info] Row with maximum value: \n\n", max_row, "\n")
         print("[Info] The max value of {} is {}".format(column, max_value))
 
-    # TODO: BUG! Gibt immer 1970 aus. Timestamps in CSV sind komisch
+    # TODO: Der Monat wird noch nicht beachtet
+    # TODO: Funktioniert nur, wenn die Spalte Floats enthält
     def get_ageOfPerson(self, filename, bdayColumn):
+
+        today = datetime.today()
+        print(type(today.year))
+
         df = pd.read_csv(filename)
         df = df[bdayColumn]
-        ages = [datetime.fromtimestamp(t).strftime('%Y-%m-%d') for t in df]
-        ages = [datetime.strptime(age, '%Y-%m-%d') for age in ages]
-        for age in ages:
-            print("GebDat: ", age.date(), "\t\t\tAlter: ", calculate_age(age))
+        for i, row in enumerate(df):
+            if type(row) == float:
+                strDate = str(row)
+                strDate = strDate[:-2]
+                year = strDate[-4:]
+                month = strDate[:-4]
+
+                # convert to generic date string
+                if len(month) > 1:
+                    date = month + "." + year
+                else:
+                    date = "0" + month + "." + year
+
+                age = (today.year - int(year))
+
+                print("Index in CSV: {}\n".format(i) +
+                      "Born:         {}\n".format(date) +
+                      "Age:          {}\n".format(age))
+            else:
+                print("[Error] This method is only able to handle floats as column values")
+                break
 
     def count_value(self, filename, column, value):
         df = pd.read_csv(filename)
@@ -98,4 +119,3 @@ class Parser:
             print("n:     ", counter)
         else:
             print("\n[Warning] There is no '{}' in {}".format(value, column))
-
