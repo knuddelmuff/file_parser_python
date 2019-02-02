@@ -59,10 +59,10 @@ if __name__ == '__main__':
         elif user_input == "6":
             filename = input("filename -> ")
             column = input("column -> ")
-            try:
-                new_parser.get_ageOfPerson(filename, column)
-            except:
-                print("[Error] There is no CSV file named {} or a column named {}".format(filename, column))
+            #try:
+            new_parser.get_ageOfPerson(filename, column)
+            #except:
+                #print("[Error] There is no CSV file named {} or a column named {}".format(filename, column))
 
         elif user_input == "7":
             filename = input("filename -> ")
