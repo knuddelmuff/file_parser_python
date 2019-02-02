@@ -63,7 +63,6 @@ class Menu:
 
             (6)
                 [filename]  the CSV file
-                [column]    column with all peoples' birthdays
 
             (7)
                 [filename]  the CSV file

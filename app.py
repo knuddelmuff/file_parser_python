@@ -17,18 +17,18 @@ if __name__ == '__main__':
         if user_input == "1":
             file_name = input("filename -> ")
             sheet_name = input("sheet in {} -> ".format(file_name))
-            try:
-                new_parser.excel_to_csv(file_name, sheet_name)
-            except:
-                print("[Error] There is no file called '{}' OR no sheet called '{}'".format(file_name, sheet_name))
+            #try:
+            new_parser.excel_to_csv(file_name, sheet_name)
+            #except:
+                #print("[Error] There is no file called '{}' OR no sheet called '{}'".format(file_name, sheet_name))
 
         elif user_input == "2":
             filename = input("filename -> ")
             column = input("column -> ")
-            try:
-                new_parser.delete_null_rows(filename, column)
-            except:
-                print("[Error] There is no CSV file named {} or a column named {}".format(filename, column))
+            #try:
+            new_parser.delete_null_rows(filename, column)
+            #except:
+                #print("[Error] There is no CSV file named {} or a column named {}".format(filename, column))
 
         elif user_input == "3":
             filename = input("filename -> ")
@@ -58,20 +58,19 @@ if __name__ == '__main__':
 
         elif user_input == "6":
             filename = input("filename -> ")
-            column = input("column -> ")
             #try:
-            new_parser.get_ageOfPerson(filename, column)
+            new_parser.get_ageOfPerson(filename)
             #except:
-                #print("[Error] There is no CSV file named {} or a column named {}".format(filename, column))
+                #print("[Error] There is no CSV file named {}, a bday column called {} or a date column named {}".format(filename, column1, column2))
 
         elif user_input == "7":
             filename = input("filename -> ")
             column = input("column -> ")
             value = input("value -> ")
-            try:
-                new_parser.count_value(filename, column, value)
-            except:
-                print("[Error] There is no CSV file named {} or a column named {}".format(filename, column))
+            #try:
+            new_parser.count_value(filename, column, value)
+            #except:
+                #print("[Error] There is no CSV file named {} or a column named {}".format(filename, column))
 
         elif user_input == "help":
             new_menu.launch_menu()

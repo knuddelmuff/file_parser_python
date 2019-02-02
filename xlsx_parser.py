@@ -1,9 +1,11 @@
+import datetime
+import random
+import string
+
 import xlrd
 import csv
-import datetime
 import os
 import pandas as pd
-from datetime import datetime, date
 
 
 class Parser:
@@ -17,8 +19,8 @@ class Parser:
     def excel_to_csv(self, file_name, sheet_name):
         wb = xlrd.open_workbook(file_name)
         sh = wb.sheet_by_name(sheet_name)
-        # TODO: wieder datetime.date.today() einfügen
-        self.csv_file = open('converted_files/{}.csv'.format("neuer_file"), 'w')
+        name = ''.join(random.choices(string.ascii_lowercase, k=5))
+        self.csv_file = open('converted_files/{}.csv'.format(name), 'w')
         wr = csv.writer(self.csv_file, quoting=csv.QUOTE_ALL)
 
         for rownum in range(sh.nrows):
@@ -34,7 +36,7 @@ class Parser:
 
     def delete_null_rows(self, filename, column):
         # https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.dropna.html
-        df = pd.read_csv(filename, error_bad_lines=False, encoding="utf-8")
+        df = pd.read_csv(filename)
         df = df.dropna(subset=[column])
         df.to_csv(filename, index=False)
         print("[Info] Deleted null rows from {}".format(column))
@@ -53,9 +55,8 @@ class Parser:
                     print("[Warning] Column contains words/strings or empty!")
                     print("Column: {}".format(i))
 
-
     def change_string2number(self, filename, column, string, number):
-        input_file = csv.DictReader(open(filename, "r"))
+        input_file = csv.DictReader(open(filename, "r", encoding="utf-8"))
         headers = input_file.fieldnames
         output_file = csv.DictWriter(open(filename, "w"), fieldnames=headers)
 
@@ -64,57 +65,42 @@ class Parser:
         for row in input_file:
             if row[column] == string:
                 row[column] = number
-
             output_file.writerow(row)
 
         print("[Info] Converted {} to {}".format(string, number))
 
-
-    def delete_firstRow(self, filename):
-
-        df = pd.read_csv(filename, error_bad_lines=False)
-        df = df.drop(df.head())
-        df.to_csv(filename, index=False)
-
     def get_maxOfColumn(self, filename, column):
-        df = pd.read_csv(filename, encoding="utf-8")
+        df = pd.read_csv(filename)
         max_row = df.loc[df[column].idxmax()]
         max_value = int(df[column].max())
 
         print("[Info] Row with maximum value: \n\n", max_row, "\n")
         print("[Info] The max value of {} is {}".format(column, max_value))
 
-    # TODO: Der Monat wird noch nicht beachtet
-    # TODO: Funktioniert nur, wenn die Spalte Floats enthält
-    def get_ageOfPerson(self, filename, bdayColumn):
 
-        today = datetime.today()
+    def get_ageOfPerson(self, filename):
 
-        df = pd.read_csv(filename, error_bad_lines=False, encoding="utf-8")
-        df = df[bdayColumn]
-        for i, row in enumerate(df):
-            if type(row) == float:
-                strDate = str(row)
-               # strDate = strDate.replace(".", "")
-                strDate = strDate[:-2]
+        with open(filename, "r", encoding="utf-8") as file:
+            content = csv.reader(file, delimiter=";")
+            headers = next(content, None)
 
-                year = strDate[-4:]
-                month = strDate[:-4]
+            today = datetime.datetime.today()
+            for row in content :
 
-                #convert to generic date string
-                if len(month) > 1:
-                    date = month + "." + year
+                if row[0] == "" or row[7] == "":
+                    continue
+
+                patDate = datetime.datetime.strptime(row[0], '%d.%m.%y')
+                bdate = datetime.datetime.strptime(row[7], '%d.%m.%y')
+
+                if bdate.year > today.year:
+                    age = patDate.year - (bdate.year - 100) - ((patDate.month, patDate.day) < (bdate.month, bdate.day))
                 else:
-                    date = "0" + month + "." + year
+                    age = patDate.year - bdate.year - ((patDate.month, patDate.day) < (bdate.month, bdate.day))
 
-                age = (today.year - int(year))
+                print("Born: {} \t Date: {} \t Age: {}".format(bdate.strftime("%d.%m.%y'"), patDate.strftime("%d.%m.%y'"), age))
 
-                print("Index in CSV: {}\n".format(i) +
-                     "Born:         {}\n".format(date) +
-                     "Age:          {}\n".format(age))
-            else:
-                print("[Error] This method is only able to handle floats as column values")
-                break
+
 
     def count_value(self, filename, column, value):
         df = pd.read_csv(filename)
