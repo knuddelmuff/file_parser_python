@@ -80,6 +80,9 @@ class Parser:
 
     def get_ageOfPerson(self, filename):
 
+
+        # TODO: BUG -> Cant read file if it' not equal to test.csv
+        # TODO: Error mesage = 0x9a
         with open(filename, "r", encoding="utf-8") as file:
             content = csv.reader(file, delimiter=";")
             headers = next(content, None)
