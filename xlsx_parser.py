@@ -55,23 +55,26 @@ class Parser:
                     print("[Warning] Column contains words/strings or empty!")
                     print("Column: {}".format(i))
 
+    # TODO: output_file makes the problem
     def change_string2number(self, filename, column, string, number):
-        df = pd.read_csv(filename, encoding="iso-8859-1")
 
-        print(df)
-
-        # input_file = csv.DictReader(open(filename, "r", encoding="utf-8"))
+        # input_file = csv.DictReader(open(filename, "r", encoding="iso-8859-1"), delimiter=";")
         # headers = input_file.fieldnames
-        # output_file = csv.DictWriter(open(filename, "w"), fieldnames=headers)
+        # #print(headers)
         #
-        # output_file.writeheader()
         #
         # for row in input_file:
+        #     #output_file = csv.DictWriter(open(filename, "w"), fieldnames=headers)
+        #     #output_file.writeheader()
+        #
+        #     #print(row[column])
         #     if row[column] == string:
         #         row[column] = number
-        #     output_file.writerow(row)
+        #     #output_file.writerow(row)
         #
-        # print("[Info] Converted {} to {}".format(string, number))
+
+
+        print("[Info] Converted {} to {}".format(string, number))
 
     def get_maxOfColumn(self, filename, column):
         df = pd.read_csv(filename)
