@@ -43,10 +43,10 @@ if __name__ == '__main__':
             column = input("column -> ")
             string = input("string -> ")
             number = int(input("number -> "))
-            try:
-                new_parser.change_string2number(filename, column, string, number)
-            except:
-                print("[Error] There is no CSV file named {} or a column named {}".format(filename, column))
+            #try:
+            new_parser.change_string2number(filename, column, string, number)
+            #except:
+                #print("[Error] There is no CSV file named {} or a column named {}".format(filename, column))
 
         elif user_input == "5":
             filename = input("filename -> ")
