@@ -4,6 +4,7 @@ import click
 import pandas as pd
 from tqdm import tqdm
 import os
+import platform
 
 
 @click.command()
@@ -64,8 +65,10 @@ def change(file):
 
     df.to_csv("edit_{}".format(file), sep=";", encoding="iso-8859-1")
 
-    #klappt nur auf Max OSX
-    os.system("open .")
+    if platform.system() == "Darwin": #Mac OSX
+        os.system("open .")
+    elif platform.system() == "Windows":
+        os.system("start .")
 
 if __name__ == "__main__":
     change()
