@@ -22,21 +22,12 @@ def change(file):
         df[spalte] = df[spalte].replace("Nicht-Raucher", 1)
         df[spalte] = df[spalte].replace("Ex-Raucher", 2)
         df[spalte] = df[spalte].replace("weiblich", 0)
+        # TODO: include regex (regular expression) for male string
         df[spalte] = df[spalte].replace("m nnlich", 1)
         df[spalte] = df[spalte].replace("unbekannt", 100)
+        df[spalte] = df[spalte].replace("Rektum", 1)
 
-        # df.loc[df[spalte] == "ja", spalte] = "1"
 
-        # df.loc[df[spalte] == "nein", spalte] = 0
-        #
-        # df.loc[df[spalte] == "unbekannt", spalte] = 100
-        #
-        # df.loc[df[spalte] == "Raucher", spalte] = 0
-        # df.loc[df[spalte] == "Nicht-Raucher", spalte] = 1
-        # df.loc[df[spalte] == "Ex-Raucher", spalte] = 2
-        # df.loc[df[spalte] == "weiblich", spalte] = 0
-        # df.loc[df[spalte] == "mnnlich", spalte] = 1
-        # df.loc[df[spalte] == "Rektum", spalte] = 1
         # df.loc[df[spalte] == "Kolon", spalte] = 2
         # df.loc[df[spalte] == "Duendarm, ohne term. Ileum", spalte] = 3
         # df.loc[df[spalte] == "term. Ileum", spalte] = 4
@@ -65,6 +56,7 @@ def change(file):
 
     df.to_csv("edit_{}".format(file), sep=";", encoding="iso-8859-1")
 
+    # Check what operating system (OS) the user is using
     if platform.system() == "Darwin": #Mac OSX
         os.system("open .")
     elif platform.system() == "Windows":
