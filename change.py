@@ -26,33 +26,32 @@ def change(file):
         df[spalte] = df[spalte].replace("m nnlich", 1)
         df[spalte] = df[spalte].replace("unbekannt", 100)
         df[spalte] = df[spalte].replace("Rektum", 1)
+        df[spalte] = df[spalte].replace("Rektum", 1)
+        df[spalte] = df[spalte].replace("Kolon", 2)
+        df[spalte] = df[spalte].replace("Duendarm, ohne term. Ileum", 3)
+        df[spalte] = df[spalte].replace("term. Ileum", 4)
+        df[spalte] = df[spalte].replace("Duodenum", 5)
+        df[spalte] = df[spalte].replace("Magen", 6)
+        df[spalte] = df[spalte].replace("Oesophagus", 7)
+        df[spalte] = df[spalte].replace("unklare Zuordnung", 0)
+        df[spalte] = df[spalte].replace("akuter Schub", 1)
+        df[spalte] = df[spalte].replace("chronisch aktiv", 2)
+        df[spalte] = df[spalte].replace("Remission", 3)
+        df[spalte] = df[spalte].replace("Azathiopin", 0)
+        df[spalte] = df[spalte].replace("6-Mercaptopurin", 1)
+        df[spalte] = df[spalte].replace("MTX", 2)
+        df[spalte] = df[spalte].replace("anderes Immunsuppressivum", 3)
+        df[spalte] = df[spalte].replace("Azathioprin", 0)
+        df[spalte] = df[spalte].replace("5-ASA", 1)
+        df[spalte] = df[spalte].replace("6-Mercaptopurin", 2)
+        df[spalte] = df[spalte].replace("TNF-alpha AK", 3)
+        df[spalte] = df[spalte].replace("Vedolizumab", 4)
+        df[spalte] = df[spalte].replace("Usterkinumab", 5)
+        df[spalte] = df[spalte].replace("andere Unvertraeglichkeiten", 6)
 
 
-        # df.loc[df[spalte] == "Kolon", spalte] = 2
-        # df.loc[df[spalte] == "Duendarm, ohne term. Ileum", spalte] = 3
-        # df.loc[df[spalte] == "term. Ileum", spalte] = 4
-        # df.loc[df[spalte] == "Duodenum", spalte] = 5
-        # df.loc[df[spalte] == "Magen", spalte] = 6
-        # df.loc[df[spalte] == "Oesophagus", spalte] = 7
-        # df.loc[df[spalte] == "unklare Zuordnung", spalte] = 0
-        # df.loc[df[spalte] == "akuter Schub", spalte] = 1
-        # df.loc[df[spalte] == "chronisch aktiv", spalte] = 2
-        # df.loc[df[spalte] == "Remission", spalte] = 3
-        # df.loc[df[spalte] == "Azathiopin", spalte] = 0
-        # df.loc[df[spalte] == "5-ASA", spalte] = 1
-        # df.loc[df[spalte] == "6-Mercaptopurin", spalte] = 3
-        # df.loc[df[spalte] == "TNF-alpha AK", spalte] = 3
-        # df.loc[df[spalte] == "Vedolizumab", spalte] = 4
-        # df.loc[df[spalte] == "Usterkinumab", spalte] = 5
-        # df.loc[df[spalte] == "andere Unvertraeglichkeiten", spalte] = 6
-        # # df.loc[df[spalte] == "ja", spalte] = 1
-        # # df.loc[df[spalte] == "ja", spalte] = 1
-        # # df.loc[df[spalte] == "ja", spalte] = 1
-        # # df.loc[df[spalte] == "ja", spalte] = 1
-        # # df.loc[df[spalte] == "ja", spalte] = 1
-        # # df.loc[df[spalte] == "ja", spalte] = 1
-        # # df.loc[df[spalte] == "ja", spalte] = 1
-        # # df.loc[df[spalte] == "ja", spalte] = 1
+
+
 
     df.to_csv("edit_{}".format(file), sep=";", encoding="iso-8859-1")
 
