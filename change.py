@@ -3,8 +3,7 @@
 import click
 import pandas as pd
 from tqdm import tqdm
-import os
-import platform
+from helper import *
 
 
 @click.command()
@@ -56,11 +55,7 @@ def change(file):
 
     df.to_csv("edit_{}".format(file), sep=";", encoding="iso-8859-1")
 
-    # Check what operating system (OS) the user is using
-    if platform.system() == "Darwin": #Mac OSX
-        os.system("open .")
-    elif platform.system() == "Windows":
-        os.system("start .")
+    openFolder()
 
 if __name__ == "__main__":
     change()
