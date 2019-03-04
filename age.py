@@ -15,7 +15,7 @@ def age(file, date_column, birthday_column):
     df = pd.read_csv(file, "r", encoding="iso-8859-1", delimiter=";", keep_default_na=False, dtype='unicode')
 
     #Info Print
-    print("[Info] Calculate ages for file ({})and store into the new column V0_Age".format(file))
+    print("[Info] Calculate ages for file ({}) and store into the new column V0_Age".format(file))
 
     yearNow = datetime.datetime.now().year
 
@@ -27,8 +27,7 @@ def age(file, date_column, birthday_column):
     for index, bdate in enumerate(bdates):
         ages.append(dates[index] - bdate)
 
-    print(ages)
-    df["V0_Ages"] = ages
+    df.insert(8, "V0_Age", ages)
 
     #Progress Bar:
     for _ in tqdm(range(10000000)):
