@@ -17,7 +17,7 @@ import datetime
 @click.argument("EIMAnaF")
 @click.argument("EIMPerA")
 @click.argument("EIMAOthF")
-def hbiComp(file, eimarth, eimirit, eimeryt, eimpyod, eimorap, eimanaf, eimpera, eimaothf):
+def hbi(file, eimarth, eimirit, eimeryt, eimpyod, eimorap, eimanaf, eimpera, eimaothf):
     df = pd.read_csv(file, "r", encoding="iso-8859-1",
                      delimiter=";", keep_default_na=False, dtype='unicode')
 
@@ -45,4 +45,4 @@ def hbiComp(file, eimarth, eimirit, eimeryt, eimpyod, eimorap, eimanaf, eimpera,
 
 
 if __name__ == "__main__":
-    hbiComp()
+    hbi()
