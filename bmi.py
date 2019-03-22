@@ -29,7 +29,7 @@ def bmi(file, weight_column, size_column):
     for _ in tqdm(range(10000000)):
         pass
 
-    df.to_csv("edit_{}".format(file), sep=";", encoding="iso-8859-1")
+    df.to_csv("edit_{}".format(file), sep=";", encoding="utf-8") # encoding="iso-8859-1"
 
     openFolder()
 
