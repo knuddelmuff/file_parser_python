@@ -12,6 +12,7 @@ import datetime
 @click.argument("Date_Column")
 @click.argument("Birthday_Column")
 def age(file, date_column, birthday_column):
+    # https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_csv.html
     df = pd.read_csv(file, "r", encoding="iso-8859-1", delimiter=";", keep_default_na=False, dtype='unicode')
 
     #Info Print
@@ -22,10 +23,7 @@ def age(file, date_column, birthday_column):
     bdates = [int(bdate[3:]) if len(bdate) > 0 else yearNow for bdate in df[birthday_column]]
     dates = [int(date[-2:]) + 2000  if len(date) > 0 else yearNow for date in df[date_column]]
 
-    ages = []
-
-    for index, bdate in enumerate(bdates):
-        ages.append(dates[index] - bdate)
+    ages = [dates[index] - bdate for index, bdate in enumerate(bdates)]
 
     df.insert(8, "V0_Age", ages)
 
