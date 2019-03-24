@@ -46,3 +46,4 @@ def hbiComp(file, eimarth, eimirit, eimeryt, eimpyod, eimorap, eimanaf, eimpera,
 
 if __name__ == "__main__":
     hbiComp()
+
