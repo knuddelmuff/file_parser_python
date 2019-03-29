@@ -14,6 +14,8 @@ def vedo(file):
 
     df = df[df.V0_Gruppe == "Gruppe 1"]
 
+    # TODO: einteilen in 13 Vs und es in jedem V durchlaufen lassen
+
     # Progress Bar:
     for _ in tqdm(range(10000000)):
         pass
