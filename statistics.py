@@ -4,6 +4,7 @@ import click
 import pandas as pd
 from tqdm import tqdm
 from helper import *
+import numpy as np
 
 
 @click.command()
@@ -22,11 +23,22 @@ def statistics(file, column):
         if len(x) != 0:
             summe += int(x)
 
+    var = 0
+    for x in df:
+        if len(x) != 0:
+            var += ((int(x)-summe)**2)
+
+
     shape = df.shape[0]
     average = summe / shape
+    varianz = var / shape
+    standardDev = np.sqrt(varianz)
+
 
     newFile = open("Statistics_{}_{}".format(column, file), "w") 
     newFile.write("Average of {} from file {}: {}".format(column, file, str(average)))
+    newFile.write("Varianz of {} from file {}: {}".format(column, file, str(varianz)))
+    newFile.write("standard deviation of {} from file {}: {}".format(column, file, str(standardDev)))
     # TODO
     #newFile.write("Sum ... irgendwas ...  of {} from file {}: {}".format(column, file, str(average)))
     newFile.close()

@@ -22,7 +22,7 @@ def hbi(file, V0_HBIGen, V0_HBIAbdo, V0_HBIStool, V0_HBIRes, V0_EIMSum):
 
     newDf = df[[V0_HBIGen, V0_HBIAbdo, V0_HBIStool, V0_HBIRes, V0_EIMSum]]
 
-    for column in newDf
+    for column in newDf:
         # TODO: Change values from CSV to numbers -> (0) keine => 0 ...
         newDf[column] = newDf[column].replace("(0) sehr gut", 0)
         newDf[column] = newDf[column].replace("(1) sehr gut", 1)
