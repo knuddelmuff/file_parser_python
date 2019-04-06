@@ -34,11 +34,14 @@ def statistics(file, column):
     varianz = var / shape
     standardDev = np.sqrt(varianz)
 
+    text = "Average of {} from file {}: {}\nVarianz of {} from file {}: {}\nstandard deviation of {} from file {}: {}".format(column, file, str(average),column, file, str(varianz), column, file, str(standardDev))
 
-    newFile = open("Statistics_{}_{}".format(column, file), "w") 
-    newFile.write("Average of {} from file {}: {}".format(column, file, str(average)))
-    newFile.write("Varianz of {} from file {}: {}".format(column, file, str(varianz)))
-    newFile.write("standard deviation of {} from file {}: {}".format(column, file, str(standardDev)))
+
+    newFile = open("Statistics_{}_{}".format(column, file), "w")
+    newFile.writelines(text)
+    # newFile.writelines("Average of {} from file {}: {}".format(column, file, str(average)))
+    # newFile.write("Varianz of {} from file {}: {}".format(column, file, str(varianz)))
+    # newFile.write("standard deviation of {} from file {}: {}".format(column, file, str(standardDev)))
     # TODO
     #newFile.write("Sum ... irgendwas ...  of {} from file {}: {}".format(column, file, str(average)))
     newFile.close()
