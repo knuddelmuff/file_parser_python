@@ -8,19 +8,19 @@ from helper import *
 
 @click.command()
 @click.option("--file", help="CSV file")
-@click.argument("V0_HBIGen")
-@click.argument("V0_HBIAbdo")
-@click.argument("V0_HBIStool")
-@click.argument("V0_HBIRes")
-@click.argument("V0_EIMSum")
-def hbi(file, V0_HBIGen, V0_HBIAbdo, V0_HBIStool, V0_HBIRes, V0_EIMSum):
+@click.argument("HBIGen")
+@click.argument("HBIAbdo")
+@click.argument("HBIStool")
+@click.argument("HBIRes")
+@click.argument("EIMSum")
+def hbi(file, hbigen, hbiabdo, hbistool, hbires, eimsum):
     df = pd.read_csv(file, "r", encoding="iso-8859-1",
                      delimiter=";", keep_default_na=False, dtype='unicode')
 
     # Info Print
     print("[Info] Calculate Harvey-Bradshaw-Index (HBI) for file ({}) and store into the new column V0_HBI".format(file))
 
-    newDf = df[[V0_HBIGen, V0_HBIAbdo, V0_HBIStool, V0_HBIRes, V0_EIMSum]]
+    newDf = df[[hbigen, hbiabdo, hbistool, hbires, eimsum]]
 
     for column in newDf:
         # TODO: Change values from CSV to numbers -> (0) keine => 0 ...
@@ -61,20 +61,22 @@ def hbi(file, V0_HBIGen, V0_HBIAbdo, V0_HBIStool, V0_HBIRes, V0_EIMSum):
         newDf[column] = newDf[column].replace("(4) sehr Schlecht", 4)
         newDf[column] = newDf[column].replace("(0) keine", 0)
         newDf[column] = newDf[column].replace("(1) leichte", 1)
+        newDf[column] = newDf[column].replace("(1) leicht", 1)
+        newDf[column] = newDf[column].replace("(2) mittel", 1)
         newDf[column] = newDf[column].replace("(2) mäßige", 2)
         newDf[column] = newDf[column].replace("(3) starke", 3)
+        newDf[column] = newDf[column].replace("(3) stark", 3)
         newDf[column] = newDf[column].replace("(0) nein", 0)
-        newDf[column] = newDf[column].replace("(1) zweifelhaft", 1)
+        newDf[column] = newDf[column].replace("(1) zweifelhclaft", 1)
         newDf[column] = newDf[column].replace("(1) fraglich", 1)
         newDf[column] = newDf[column].replace("(2) sicher", 2)
         newDf[column] = newDf[column].replace("(3) schmerzhaft und sicher", 3)
+        newDf[column] = newDf[column].replace("(3) sicher und schmerzhaft", 3)
 
 
 
-
-
-
-    counts = newDf.sum(axis=1)
+    counts = newDf.sum()
+    print(counts)
 
     df.insert(1, "V0_HBISum", counts)
 
