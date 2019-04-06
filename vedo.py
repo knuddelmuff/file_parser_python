@@ -12,7 +12,9 @@ def vedo(file):
     df = pd.read_csv(file, "r", encoding="iso-8859-1",
                      delimiter=";", keep_default_na=False, dtype='unicode')
 
-    df = df[df.V0_Gruppe == "Gruppe 1"]
+    df = df[df.V0_Gruppe != "Gruppe 2"]
+    df = df[df.V0_Gruppe != "Gruppe 3"]
+    df = df[df.V0_Gruppe != ""]
 
     # TODO: einteilen in 13 Vs und es in jedem V durchlaufen lassen
 
