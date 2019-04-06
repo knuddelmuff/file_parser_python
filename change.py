@@ -14,7 +14,7 @@ def change(file):
     #Info Print
     print("[Info] File ({}) is searched and changed".format(file))
 
-    for spalte in df:
+    for spalte in tqdm(df):
         df[spalte] = df[spalte].replace("ja", 1)
         df[spalte] = df[spalte].replace("nein", 0)
         df[spalte] = df[spalte].replace("Raucher", 0)
@@ -157,6 +157,7 @@ def change(file):
         df[spalte] = df[spalte].replace("(2) sicher", 2)
         df[spalte] = df[spalte].replace("(3) schmerzhaft und sicher", 3)
         df[spalte] = df[spalte].replace("(3) sicher und schmerzhaft", 3)
+
 
 
     df.to_csv("edit_{}".format(file), sep=";", encoding="iso-8859-1")
