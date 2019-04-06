@@ -31,7 +31,7 @@ def hbiComp(file, eimarth, eimirit, eimeryt, eimpyod, eimorap, eimanaf, eimpera,
         newDf[column] = newDf[column].replace("on", 1)
         newDf[column] = newDf[column].replace("", 0)
 
-    counts = newDf.sum(axis=1)
+    counts = newDf.sum()
 
     df.insert(1, "V0_EIMSum", counts)
 
