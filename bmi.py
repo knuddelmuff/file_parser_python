@@ -18,7 +18,7 @@ def bmi(file, weight_column, size_column):
     print("[Info] Calculate Body-Mass-Index (BMI) for file ({}) and store into the new column V0_BMI".format(file))
 
     # TODO: Better else value
-    sizes = [float((int(size) / 100) ** 2) if len(size) > 0 and int(size) > 0 else 100000 for size in df[size_column]]
+    sizes = [float((float(size) / 100) ** 2) if len(size) > 0 and int(size) > 0 else 100000 for size in df[size_column]]
     weights = [int(weight) if len(weight) > 0 and int(weight) > 0 else 100000 for weight in df[weight_column]]
 
     bmis = [weights[index] / size for index, size in enumerate(sizes)]
